@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Demo">
+  <DataContextMoniker Name="/DemoDataContext" />
+  <nestedChildShapes>
+    <classShape Id="6cece90c-7b02-4d18-93d7-59522571436b" absoluteBounds="6.25, 1.25, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/DemoDataContext/Binhluan" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a15a4760-611d-4c14-bc2e-8f946778fb9d" absoluteBounds="6.265, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="73d691fe-e7f2-489f-8adb-4cc8e224bf2b" absoluteBounds="3.5, 5.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DemoDataContext/Username" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dfb0d60f-e4dd-4c4a-a136-cc59beea815f" absoluteBounds="3.515, 5.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="06e2152d-478a-47aa-8029-80f6aed9261b" absoluteBounds="0.75, 1.5, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/DemoDataContext/LOAITIN" />
+      <nestedChildShapes>
+        <elementListCompartment Id="eb07f3bf-c5ab-4d95-8283-9a720bcb088a" absoluteBounds="0.765, 1.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e254bd79-f523-4d6a-b77e-b5b2787e0a03" absoluteBounds="3.5, 1, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/DemoDataContext/NOIDUNGTT" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b3ebd639-5d22-4ef8-9ffd-2ed14c940b06" absoluteBounds="3.515, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 6.16429768880208); (7.25 : 6.16429768880208); (7.25 : 3.02089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DemoDataContext/Username/Username_Binhluan" />
+      <nodes>
+        <classShapeMoniker Id="73d691fe-e7f2-489f-8adb-4cc8e224bf2b" />
+        <classShapeMoniker Id="6cece90c-7b02-4d18-93d7-59522571436b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 2.13544840494792); (6.25 : 2.13544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DemoDataContext/NOIDUNGTT/NOIDUNGTT_Binhluan" />
+      <nodes>
+        <classShapeMoniker Id="e254bd79-f523-4d6a-b77e-b5b2787e0a03" />
+        <classShapeMoniker Id="6cece90c-7b02-4d18-93d7-59522571436b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 2.09699625651042); (3.5 : 2.09699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DemoDataContext/LOAITIN/LOAITIN_NOIDUNGTT" />
+      <nodes>
+        <classShapeMoniker Id="06e2152d-478a-47aa-8029-80f6aed9261b" />
+        <classShapeMoniker Id="e254bd79-f523-4d6a-b77e-b5b2787e0a03" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

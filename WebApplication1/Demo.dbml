@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="timemaster" Class="DemoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SqlExpress;Initial Catalog=timemaster;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="timemasterConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Binhluan" Member="Binhluans">
+    <Type Name="Binhluan">
+      <Column Name="MaBL" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Noidung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Matin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Username" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ngaydang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Username_Binhluan" Member="Username1" ThisKey="Username" OtherKey="IDname" Type="Username" IsForeignKey="true" />
+      <Association Name="NOIDUNGTT_Binhluan" Member="NOIDUNGTT" ThisKey="Matin" OtherKey="Matin" Type="NOIDUNGTT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Username" Member="Usernames">
+    <Type Name="Username">
+      <Column Name="IDname" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Member="UserName1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Pass" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Username_Binhluan" Member="Binhluans" ThisKey="IDname" OtherKey="Username" Type="Binhluan" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOAITIN" Member="LOAITINs">
+    <Type Name="LOAITIN">
+      <Column Name="Maloaitin" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Tieude" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="LOAITIN_NOIDUNGTT" Member="NOIDUNGTTs" ThisKey="Maloaitin" OtherKey="Maloaitin" Type="NOIDUNGTT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NOIDUNGTT" Member="NOIDUNGTTs">
+    <Type Name="NOIDUNGTT">
+      <Column Name="Matin" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Maloaitin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tieud" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Noidungtt" Member="Noidungtt1" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="Hinhanh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Noidung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Ngaydang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Lanxem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NOIDUNGTT_Binhluan" Member="Binhluans" ThisKey="Matin" OtherKey="Matin" Type="Binhluan" />
+      <Association Name="LOAITIN_NOIDUNGTT" Member="LOAITIN" ThisKey="Maloaitin" OtherKey="Maloaitin" Type="LOAITIN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.Username_user" Method="Username_user">
+    <Parameter Name="user" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Username_userResult">
+      <Column Name="IDname" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Pass" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.lanxem" Method="lanxem">
+    <Parameter Name="matin" Type="System.Int32" DbType="Int" />
+    <Parameter Name="lanxem" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.LOAITIN_delete" Method="LOAITIN_delete">
+    <Parameter Name="MATIN" Parameter="mATIN" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.LOAITIN_insert" Method="LOAITIN_insert">
+    <Parameter Name="MATIN" Parameter="mATIN" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TD" Parameter="tD" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.LOAITIN_seclect" Method="LOAITIN_seclect">
+    <Parameter Name="MATIN" Parameter="mATIN" Type="System.Int32" DbType="Int" />
+    <ElementType Name="LOAITIN_seclectResult">
+      <Column Name="Maloaitin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Tieude" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LOAITIN_seclect_all" Method="LOAITIN_seclect_all">
+    <ElementType Name="LOAITIN_seclect_allResult">
+      <Column Name="Maloaitin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Tieude" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LOAITIN_update" Method="LOAITIN_update">
+    <Parameter Name="MATIN" Parameter="mATIN" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TD" Parameter="tD" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.NOIDUNGTT_DELETE" Method="NOIDUNGTT_DELETE">
+    <Parameter Name="MATIN" Parameter="mATIN" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.NOIDUNGTT_INSERT" Method="NOIDUNGTT_INSERT">
+    <Parameter Name="MT" Parameter="mT" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MLT" Parameter="mLT" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TD" Parameter="tD" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NDTT" Parameter="nDTT" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="HA" Parameter="hA" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="ND" Parameter="nD" Type="System.String" DbType="NVarChar(1000)" />
+    <Parameter Name="NGD" Parameter="nGD" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.NOIDUNGTT_SECLECTHOME" Method="NOIDUNGTT_SECLECTHOME">
+    <ElementType Name="NOIDUNGTT_SECLECTHOMEResult">
+      <Column Name="Matin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Maloaitin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tieud" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Noidungtt" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="Hinhanh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Noidung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Ngaydang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Lanxem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.NOIDUNGTT_SECLIEC" Method="NOIDUNGTT_SECLIEC">
+    <Parameter Name="MATIN" Parameter="mATIN" Type="System.Int32" DbType="Int" />
+    <ElementType Name="NOIDUNGTT_SECLIECResult">
+      <Column Name="Matin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Maloaitin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tieud" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Noidungtt" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="Hinhanh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Noidung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Ngaydang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Lanxem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.NOIDUNGTT_SECLIEC_ALL" Method="NOIDUNGTT_SECLIEC_ALL">
+    <ElementType Name="NOIDUNGTT_SECLIEC_ALLResult">
+      <Column Name="Matin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Maloaitin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tieud" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Noidungtt" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="Hinhanh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Noidung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Ngaydang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Lanxem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.NOIDUNGTT_SECLIEC_MLTIN" Method="NOIDUNGTT_SECLIEC_MLTIN">
+    <Parameter Name="MLT" Parameter="mLT" Type="System.Int32" DbType="Int" />
+    <ElementType Name="NOIDUNGTT_SECLIEC_MLTINResult">
+      <Column Name="Matin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Maloaitin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tieud" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Noidungtt" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="Hinhanh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Noidung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Ngaydang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Lanxem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.NOIDUNGTT_update" Method="NOIDUNGTT_update">
+    <Parameter Name="MT" Parameter="mT" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MLT" Parameter="mLT" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TD" Parameter="tD" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="NDTT" Parameter="nDTT" Type="System.String" DbType="NVarChar(300)" />
+    <Parameter Name="HA" Parameter="hA" Type="System.String" DbType="NVarChar(250)" />
+    <Parameter Name="ND" Parameter="nD" Type="System.String" DbType="NVarChar(1000)" />
+    <Parameter Name="NGD" Parameter="nGD" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ramdom" Method="ramdom">
+    <ElementType Name="ramdomResult">
+      <Column Name="Matin" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Maloaitin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Tieud" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Noidungtt" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="Hinhanh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Noidung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Ngaydang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Lanxem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Solx" Method="Solx">
+    <Parameter Name="matin" Type="System.Int32" DbType="Int" />
+    <Parameter Name="lanxem" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Username_delete" Method="Username_delete">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Username_Insert" Method="Username_Insert">
+    <Parameter Name="user" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="pass" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="hoten" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Username_search" Method="Username_search">
+    <Parameter Name="user" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="pass" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="Username_searchResult">
+      <Column Name="IDname" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Pass" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Username_select" Method="Username_select">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Username_selectResult">
+      <Column Name="IDname" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Pass" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Username_select_all" Method="Username_select_all">
+    <ElementType Name="Username_select_allResult">
+      <Column Name="IDname" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Pass" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Username_select_update" Method="Username_select_update">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="User" Parameter="user" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="pass" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ten" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.lay" Method="lay">
+    <Parameter Name="user" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="id" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Binhluan_update" Method="Binhluan_update">
+    <Parameter Name="MBl" Parameter="mBl" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ND" Parameter="nD" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="MATIN" Parameter="mATIN" Type="System.Int32" DbType="Int" />
+    <Parameter Name="user" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Binhluan_all" Method="Binhluan_all">
+    <ElementType Name="Binhluan_allResult">
+      <Column Name="MaBL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Noidung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Matin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Username" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ngaydang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Binhluan_delete" Method="Binhluan_delete">
+    <Parameter Name="Mabl" Parameter="mabl" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Binhluan_Insert" Method="Binhluan_Insert">
+    <Parameter Name="ND" Parameter="nD" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="MATIN" Parameter="mATIN" Type="System.Int32" DbType="Int" />
+    <Parameter Name="user" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ngay" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.Binhluan_select" Method="Binhluan_select">
+    <Parameter Name="mabl" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Binhluan_selectResult">
+      <Column Name="MaBL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Noidung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Matin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Username" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ngaydang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Binhluan_select_matin" Method="Binhluan_select_matin">
+    <Parameter Name="MATIN" Parameter="mATIN" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Binhluan_select_matinResult">
+      <Column Name="MaBL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Noidung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Matin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Username" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ngaydang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.Binhluan_select_top" Method="Binhluan_select_top">
+    <Parameter Name="MATIN" Parameter="mATIN" Type="System.Int32" DbType="Int" />
+    <ElementType Name="Binhluan_select_topResult">
+      <Column Name="MaBL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Noidung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Matin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Username" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ngaydang" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

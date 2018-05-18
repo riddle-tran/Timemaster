@@ -1,0 +1,106 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="WebApplication1.ADMIN.Admin" %>
+
+<%@ Register assembly="DevExpress.Web.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            height: 66px;
+            text-align: center;
+        }
+.dxnbSys
+{
+    display: table;
+    border-spacing: 0;
+    box-sizing: border-box;
+}
+.dxnb-header,
+.dxnb-headerCollapsed 
+{
+	overflow: hidden;
+	cursor: pointer;
+	clear: both;
+}
+
+.dxnb-item,
+.dxnb-link,
+.dxnb-header,
+.dxnb-headerCollapsed
+{
+    line-height: 100%;
+}
+span.dx-vam, span.dx-vat, span.dx-vab, a.dx-vam, a.dx-vat, a.dx-vab 
+{ 
+    line-height: 100%; 
+    padding: 2px 0;
+    text-decoration: inherit;
+}
+
+.dx-vam, .dx-valm { vertical-align: middle; }
+.dx-vam, .dx-vat, .dx-vab { display: inline-block!important; }
+.dxnb-link
+{
+    display: block;
+}
+a > .dx-vam, a > .dx-vat, a > .dx-vab 
+{ 
+    /* Q556373 */
+    line-height: 135%\9!important;
+    display: inline\9!important;
+    padding: 0\9!important;
+    
+}
+
+.dx-clear
+{
+	display: block;
+	clear: both;
+	height: 0;
+	width: 0;
+	font-size: 0;
+	line-height: 0;
+	overflow: hidden;
+	visibility: hidden;
+}
+        .auto-style3 {
+            width: 375px;
+        }
+        .auto-style4 {
+            width: 76%;
+        }
+        .auto-style5 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style2" colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style3">
+                        &nbsp;</td>
+                    <td class="auto-style4">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <p class="auto-style5">
+                    &nbsp;</p>
+            </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,81 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Home.master.cs" Inherits="WebApplication1.Home" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+      <title> TIME MASTER! Xin chào</title>
+    <link href="data/Style1.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+      <style type="text/css">
+          #form1 {
+              width: 975px;
+          }
+      </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+       <div id="banner">
+            TIME MASTER
+        </div>
+
+    <div id="menutop">
+    
+        <div id="menu">
+            <ul>
+                <li><a href="Index.aspx">Trang chủ</a></li>
+                <asp:Repeater ID="rpBANTIN" runat="server">
+                    <ItemTemplate>
+                        <li>
+                            <a href="Bantin.aspx?loaitin=<%# Eval("Maloaitin") %>"><%# Eval("Tieude") %></a>
+                        </li>
+                    </ItemTemplate>
+                </asp:Repeater>
+                <%
+    if ((Boolean)Session["user"] == false)
+    {
+                        %>
+
+                        <li><a href="login.aspx">Đăng Nhập</a></li>
+                       <li><a href="dangky.aspx">Đăng ký</a></li>
+                <%
+    }
+    else
+    {
+                        %>
+                <%
+                    if ((Boolean)Session["ADMIN"] == true)
+                    {
+                                %>
+                                            <li><a href="ADMIN/Admin.aspx">Thêm mới</a></li>
+                                <%
+
+                    }
+                    %>
+                           <li><a href="logout.aspx">Thoát</a></li>
+                <%}                   
+                         %>
+               
+            </ul>
+        </div>
+    </div>
+        
+          <div id="conten">
+              <div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    
+                </asp:ContentPlaceHolder>
+                  </div>
+         </div>
+     <div id="footer">
+         <div id="ndfooter">
+                CopyRight: TRẦN VĂN NAM - MSSV:N14DCAT011-HVBCVT. 
+                <br/>
+                Liên hệ: EMAIL:N14DCAT011@STUDENT.PTITHCM.EDU.VN 
+          </div> 
+    </div>
+        
+    </form>
+</body>
+</html>
